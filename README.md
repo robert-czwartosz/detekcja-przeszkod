@@ -1,10 +1,39 @@
-# Konfiguracja rozwiązania SECOND na danych Udacity
+# Moduł wykrywania przeszkód dla systemu sterowania pojazdem autonomicznym 
 
-## Instalacja oprogramowania
-### 1. Instalacja CUDA 9.0 oraz CUDNN 7.3
-Pobrać plik instalatora i cztery pakiety ze strony https://developer.nvidia.com/cuda-90-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=deblocal
+## Spis treści
+* [Cel projektu](#cel-projektu)
+* [Metoda rozwiązywania problemu wykrywania przeszkód](#metoda-rozwiązywania-problemu-wykrywania-przeszkód)
+* [Technologie](#technologie)
+* [Konfiguracja rozwiązania SECOND na danych Udacity](#konfiguracja-rozwiązania-second-na-danych-udacity)
+* [Zastosowanie oprogramowania](#zastosowanie-oprogramowania)
+* [Perspektywy rozwoju](#perspektywy-rozwoju)
+
+## Cel projektu
+
+Projekt zrealizowałem w trakcie studiów w ramach pracy dyplomowej inżynierskiej. Celem projektu było napisanie modułu wykrywającego lokalizację przeszkód i ich wymiarów na podstawie skanu 3D z Lidaru. Dane zostały opublikowane przez organizację Udacity(https://github.com/udacity/didi-competition/blob/master/docs/GettingStarted.md).
+
+## Metoda rozwiązywania problemu wykrywania przeszkód
+
+W celu stworzenia oprogramowania najpierw wykonano przegląd rozwiązań, a następnie dokonano konwersji danych i konfiguracji najlepszego rozwiązania. Dane zostały przetworzone przy użyciu programów napisanych w języku Python, skryptów Bash oraz oprogramowania ROS Kinetic. Konfigurowane rozwiązanie było oparte o sieć neuronową VoxelNet. Więcej informacji znajduje się w [pracy inżynierskiej](https://github.com/robert-czwartosz/detekcja-przeszkod/blob/main/DetekcjaPrzeszkód.pdf).
+
+## Technologie
+* system operacyjny Ubuntu 16.04
+* Bash
+* Docker CE
+* Python 3.6.7
+* PyTorch
+* CUDA 9.0 + CUDNN 7.3
+* ROS Kinetic
+* Anaconda 3
+
+
+## Konfiguracja rozwiązania SECOND na danych Udacity
+
+### Instalacja oprogramowania
+#### 1. Instalacja CUDA 9.0 oraz CUDNN 7.3
+Pobierz plik instalatora i cztery pakiety ze strony https://developer.nvidia.com/cuda-90-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1604&target_type=deblocal
 Razem powinno być pięć pobranych plików .deb
-Przejść do katalogu z pobranymi plikami i wykonać następujące polecenia.
+Przejdź do katalogu z pobranymi plikami i wykonaj następujące polecenia:
 ```bash
 sudo dpkg -i cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64.deb
 for dir in /var/cuda-repo-*/
@@ -15,7 +44,7 @@ sudo apt-get update
 sudo apt-get install cuda
 ```
 
-Następnie trzeba dodać następujący kod na początek pliku ~/.bashrc
+Następnie dodaj następujący kod na początek pliku ~/.bashrc
 ```bash
 export PATH=/usr/local/cuda-9.0/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
@@ -30,7 +59,7 @@ cd bin/x86_64/linux/release/
 ./deviceQuery
 ./bandwidthTest
 ```
-Wykonanie programów deviceQuery oraz bandwidthTest powinno wyświetlić na końcu "Result = PASS"
+Wykonanie programów **deviceQuery** oraz **bandwidthTest** powinno wyświetlić na końcu "Result = PASS"
 
 Więcej informacji o CUDA 9.0 znajduje się na stronie https://docs.nvidia.com/cuda/archive/9.0/cuda-installation-guide-linux/
 
@@ -53,7 +82,7 @@ Po wykonaniu powinien pojawić się napis "Test passed!"
 
 Więcej informacji o CUDNN znajduje się na https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html#installlinux
 
-### 2. Instalacja Docker CE
+#### 2. Instalacja Docker CE
 
 ```bash
 sudo apt-get update
@@ -73,7 +102,7 @@ sudo docker run hello-world
 Więcej informacji o Docker CE znajduje się na https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-docker-ce
 
 
-### 3. Instalacja ROS Kinetic
+#### 3. Instalacja ROS Kinetic
 
 W celu instalacji ROS Kinetic należy wykonać:
 ```bash
@@ -96,7 +125,7 @@ sudo apt-get install ros-kinetic-velodyne
 Więcej informacji o ROS Kinetic na http://wiki.ros.org/kinetic/Installation/Ubuntu
 Poradnik na temat wizualizacji danych Udacity w oprogramowaniu ROS znajduje się na https://github.com/udacity/didi-competition/blob/master/docs/GettingStarted.md
 
-### 4. Instalacja Anaconda 3 i utworzenie środowiska secondEnv 
+#### 4. Instalacja Anaconda 3 i utworzenie środowiska secondEnv 
 
 Należy pobrać instalator Anaconda3 dla systemu Linux ze strony https://www.anaconda.com/download/#linux
 Po pobraniu należy go uruchomić i zainstalować Anaconda3 w folderze domyślnym, czyli w ~/.
@@ -115,8 +144,8 @@ Aktywowanie środowiska odbywa się po wykonaniu:
 conda activate secondEnv
 ```
 
-## Konfiguracja rozwiązania
-### 1. Pobranie repozytorium 
+### Konfiguracja rozwiązania
+#### 1. Pobranie repozytorium 
 
 ```bash
 git clone https://github.com/robert12321/OD.git
@@ -137,7 +166,7 @@ export NUMBAPRO_LIBDEVICE=/usr/local/cuda/nvvm/libdevice
 ```
 
 
-### 2. Instalacja SparseConvNet
+#### 2. Instalacja SparseConvNet
 
 ```bash
 source 
@@ -150,14 +179,12 @@ cd SparseConvNet/
 bash build.sh
 ```
 
-## Konwersja danych Udacity na KITTI
-### Konwersja danych Didi-Release-2
+### Konwersja danych Udacity na KITTI
 
-Pobierz plik torrent ze strony http://academictorrents.com/details/18d7f6be647eb6d581f5ff61819a11b9c21769c7
-Pobierz dane za pomocą programu obsługującego pliki torrent np. Free Download Manager
-Rozpakować archiwum Didi-Release-2.tar.gz
-Skopiować pliki .bag z katalogów /1/, /2/ i /3/ znajdujących się w /Didi-Release-2/Data/ do odpowiadających im katalogów w OD/Didi-Release-2/Data/
-Wejść do katalogu OD/ i uruchomić:
+Pobierz plik torrent ze strony http://academictorrents.com/details/18d7f6be647eb6d581f5ff61819a11b9c21769c7.
+Pobierz dane za pomocą programu obsługującego pliki torrent np. Free Download Manager. Rozpakuj archiwum Didi-Release-2.tar.gz
+Skopiuj pliki .bag z katalogów /1/, /2/ i /3/ znajdujących się w /Didi-Release-2/Data/ do odpowiadających im katalogów w OD/Didi-Release-2/Data/
+Przejdź do katalogu OD/ i uruchom:
 ```bash
 ./create_tracklets_for_Didi-Release-2.sh
 ./convert_Didi-Release-2.sh
@@ -165,8 +192,17 @@ Wejść do katalogu OD/ i uruchomić:
 
 
 
-## Uruchomienie rozwiązania
-Przejść do katalogu OD/second.pytorchUdacity/ i uruchomić:
+### Uruchomienie rozwiązania
+Przejdź do katalogu OD/second.pytorchUdacity/ i uruchom:
 ```bash
 ./run.sh
 ```
+
+## Zastosowanie oprogramowania
+
+Ze względu na zasięg około 25m i drogę hamowania, zaprogramowana metoda wykrywania przeszkód ma zastosowanie tylko dla prędkości nie przekraczającej 50km/h. Ta prędkość dotyczy pojazdu sterowanego oraz innych uczestników ruchu drogowego, dlatego zastosowanie oprogramowania ogranicza się do jazdy w terenie zabudowanym.
+
+## Perspektywy rozwoju
+* zmiana parametrów sieci neuronowej, tak aby dokładność detekcji się poprawiła
+* rozszerzenie wejścia sieci neuronowej o obraz z kamery
+* stworzenie graficznego interfejsu użytkownika
