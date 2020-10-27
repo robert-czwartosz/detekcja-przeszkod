@@ -145,7 +145,7 @@ conda activate secondEnv
 ```
 
 ### Konfiguracja rozwiązania
-#### 1. Pobranie repozytorium 
+#### Pobranie repozytorium 
 
 ```bash
 git clone https://github.com/robert-czwartosz/detekcja-przeszkod.git
@@ -158,7 +158,7 @@ sudo apt-get install libboost-all-dev
 ./install.sh
 ```
 
-Należy dodać do na początek pliku ~/.bashrc linie:
+Należy dodać na początek pliku **~/.bashrc** linie:
 ```bash
 export NUMBAPRO_CUDA_DRIVER=/usr/lib/x86_64-linux-gnu/libcuda.so
 export NUMBAPRO_NVVM=/usr/local/cuda/nvvm/lib64/libnvvm.so
@@ -166,7 +166,7 @@ export NUMBAPRO_LIBDEVICE=/usr/local/cuda/nvvm/libdevice
 ```
 
 
-#### 2. Instalacja SparseConvNet
+#### Instalacja SparseConvNet
 
 ```bash
 source 
@@ -182,8 +182,8 @@ bash build.sh
 ### Konwersja danych Udacity na KITTI
 
 Pobierz plik torrent ze strony http://academictorrents.com/details/18d7f6be647eb6d581f5ff61819a11b9c21769c7.
-Pobierz dane za pomocą programu obsługującego pliki torrent np. Free Download Manager. Rozpakuj archiwum Didi-Release-2.tar.gz.
-Skopiuj pliki .bag z rozpakowanego archiwum z katalogów /1/, /2/ i /3/ znajdujących się w /Didi-Release-2/Data/ do odpowiadających im katalogów w [/Didi-Release-2/Data/](https://github.com/robert-czwartosz/detekcja-przeszkod/tree/main/Didi-Release-2/Data).
+Pobierz dane za pomocą programu obsługującego pliki torrent np. qBittorrent. Rozpakuj archiwum **Didi-Release-2.tar.gz**.
+Skopiuj pliki **.bag** z rozpakowanego archiwum z katalogów **/1/**, **/2/** i **/3/** znajdujących się w **/Didi-Release-2/Data/** do odpowiadających im katalogów w [/Didi-Release-2/Data/](https://github.com/robert-czwartosz/detekcja-przeszkod/tree/main/Didi-Release-2/Data).
 Przejdź do katalogu repozytorium i uruchom:
 ```bash
 ./create_tracklets_for_Didi-Release-2.sh
