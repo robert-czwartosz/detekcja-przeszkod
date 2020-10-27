@@ -200,7 +200,7 @@ Przejdź do katalogu [second.pytorchUdacity/](https://github.com/robert-czwartos
 
 ## Zastosowanie oprogramowania
 
-Ze względu na zasięg około 25m i drogę hamowania, zaprogramowana metoda wykrywania przeszkód ma zastosowanie tylko dla prędkości nie przekraczającej 50km/h. Ta prędkość dotyczy pojazdu sterowanego oraz innych uczestników ruchu drogowego, dlatego zastosowanie oprogramowania ogranicza się do jazdy w terenie zabudowanym.
+Biorąc pod uwagę zasięg detekcji wynoszący około 25m i drogę hamowania na suchym asfalcie, zaprogramowana metoda wykrywania przeszkód ma zastosowanie tylko dla prędkości nie przekraczającej 50km/h. Ta prędkość dotyczy pojazdu sterowanego oraz innych uczestników ruchu drogowego, dlatego zastosowanie oprogramowania ogranicza się do jazdy w terenie zabudowanym.
 
 ## Perspektywy rozwoju
 * zmiana parametrów sieci neuronowej, tak aby dokładność detekcji się poprawiła
