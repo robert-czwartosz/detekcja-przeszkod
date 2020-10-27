@@ -44,7 +44,7 @@ sudo apt-get update
 sudo apt-get install cuda
 ```
 
-Następnie dodaj następujący kod na początek pliku ~/.bashrc
+Następnie dodaj następujący kod na początek pliku **~/.bashrc**
 ```bash
 export PATH=/usr/local/cuda-9.0/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
@@ -122,19 +122,19 @@ sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool
 sudo apt-get install ros-kinetic-velodyne
 ```
 
-Więcej informacji o ROS Kinetic na http://wiki.ros.org/kinetic/Installation/Ubuntu
+Więcej informacji o ROS Kinetic na http://wiki.ros.org/kinetic/Installation/Ubuntu.
 Poradnik na temat wizualizacji danych Udacity w oprogramowaniu ROS znajduje się na https://github.com/udacity/didi-competition/blob/master/docs/GettingStarted.md
 
 #### 4. Instalacja Anaconda 3 i utworzenie środowiska secondEnv 
 
 Należy pobrać instalator Anaconda3 dla systemu Linux ze strony https://www.anaconda.com/download/#linux
-Po pobraniu należy go uruchomić i zainstalować Anaconda3 w folderze domyślnym, czyli w ~/.
+Po pobraniu należy go uruchomić i zainstalować Anaconda3 w folderze domyślnym, czyli w **~/**.
 Aktywacja środowiska Anaconda 3 odbywa się po wykonaniu:
 ```bash
 source ~/anaconda/bin/activate/
 ```
 
-Po instalacji Anaconda3 należy utworzyć środowisko secondEnv
+Po instalacji Anaconda3 należy utworzyć środowisko **secondEnv**
 ```bash
 conda create -n secondEnv python=3.6.7
 ```
@@ -148,8 +148,8 @@ conda activate secondEnv
 #### 1. Pobranie repozytorium 
 
 ```bash
-git clone https://github.com/robert12321/OD.git
-cd ./OD/second.pytorchUdacity/
+git clone https://github.com/robert-czwartosz/detekcja-przeszkod.git
+cd ./detekcja-przeszkod/second.pytorchUdacity/
 source ~/anaconda3/bin/activate
 conda activate secondEnv
 pip install numba
@@ -182,9 +182,9 @@ bash build.sh
 ### Konwersja danych Udacity na KITTI
 
 Pobierz plik torrent ze strony http://academictorrents.com/details/18d7f6be647eb6d581f5ff61819a11b9c21769c7.
-Pobierz dane za pomocą programu obsługującego pliki torrent np. Free Download Manager. Rozpakuj archiwum Didi-Release-2.tar.gz
-Skopiuj pliki .bag z katalogów /1/, /2/ i /3/ znajdujących się w /Didi-Release-2/Data/ do odpowiadających im katalogów w OD/Didi-Release-2/Data/
-Przejdź do katalogu OD/ i uruchom:
+Pobierz dane za pomocą programu obsługującego pliki torrent np. Free Download Manager. Rozpakuj archiwum Didi-Release-2.tar.gz.
+Skopiuj pliki .bag z rozpakowanego archiwum z katalogów /1/, /2/ i /3/ znajdujących się w /Didi-Release-2/Data/ do odpowiadających im katalogów w [/Didi-Release-2/Data/](https://github.com/robert-czwartosz/detekcja-przeszkod/tree/main/Didi-Release-2/Data).
+Przejdź do katalogu repozytorium i uruchom:
 ```bash
 ./create_tracklets_for_Didi-Release-2.sh
 ./convert_Didi-Release-2.sh
@@ -193,7 +193,7 @@ Przejdź do katalogu OD/ i uruchom:
 
 
 ### Uruchomienie rozwiązania
-Przejdź do katalogu OD/second.pytorchUdacity/ i uruchom:
+Przejdź do katalogu [second.pytorchUdacity/](https://github.com/robert-czwartosz/detekcja-przeszkod/tree/main/second.pytorchUdacity) i uruchom:
 ```bash
 ./run.sh
 ```
